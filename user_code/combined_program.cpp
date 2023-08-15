@@ -3,7 +3,7 @@
 #include <vector>
 class Solution {
 public:
-    bool isPalindrome(int x) {
+    int reverse(int x) { 
 
     }
 };
@@ -12,24 +12,28 @@ using namespace std;
 void test1()
 {
     Solution s;
-    bool ret = s.isPalindrome(121);
-    if (ret) {
+    int i = 123;
+    int ret = s.reverse(i);
+    if (ret == 321) {
         std::cout << "Test1 OK" << std::endl;
     }else {
         std::cout << "Test1 failed" << std::endl;
     }
 }
 
+
 void test2()
 {
     Solution s;
-    bool ret = s.isPalindrome(-121);
-    if (!ret) {
+    int i = 987;
+    int ret = s.reverse(i);
+    if (ret == 789) {
         std::cout << "Test2 OK" << std::endl;
     }else {
         std::cout << "Test2 failed" << std::endl;
     }
 }
+
 
 int main()
 {

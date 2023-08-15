@@ -17,7 +17,7 @@ SimpleOJ* SimpleOJ::instance = nullptr;
 
 SimpleOJ::SimpleOJ() {}
 
-void SimpleOJ::timer_handler(int signum) {
+void SimpleOJ::timer_handler(int /*signum*/) {
     std::cerr << "Program terminated due to time limit exceeded.\n";
     exit(EXIT_FAILURE);
 }
@@ -171,18 +171,30 @@ void SimpleOJ::perform_evaluation(const std::string& problem_path) {
             } else if (WIFSIGNALED(exit_status) && WTERMSIG(exit_status) == SIGALRM) {
                 std::cout << "Program terminated due to time limit exceeded.\n";
             } else if (exit_status == 0) {
-                std::cout << "All test cases passed.\n";
+                std::cout << "All test cases tested.\n";
             } else {
                 std::cout << "Some test cases failed.\n";
             }
+            
         } else {
             std::cerr << "Compilation failed.\n";
         }
 
         // Clean up the timer
         timer_delete(timerid);
+
     } else {
         std::cout << "Evaluation aborted\n";
+    }
+    
+    std::cout << "Do you want to continue testing other problems? (yes/no): ";
+    std::string continue_testing;
+    std::cin >> continue_testing;
+
+    if (continue_testing == "yes") {
+        run(); // 重新运行程序以继续选择问题和测试
+    } else {
+        std::cout << "Exiting SimpleOJ. Goodbye!\n";
     }
 }
 
